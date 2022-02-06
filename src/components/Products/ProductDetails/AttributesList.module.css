@@ -1,0 +1,6 @@
+.itemContainer {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    margin: 5px 0px 15px 0px;
+  }

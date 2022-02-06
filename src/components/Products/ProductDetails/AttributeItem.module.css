@@ -1,0 +1,22 @@
+.itemBox {
+  width: fit-content;
+  padding: 0px 30px 30px;
+  height: 45px;
+  max-width: 100%;
+  max-height: 100%;
+  border: 1px solid #1d1f22;
+  text-align: center;
+  line-height: 45px;
+  margin-right: 11px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.itemBox:hover {
+  background-color: lightgrey;
+  color: black;
+}
+.itemBox.clicked {
+  background-color: black;
+  color: white;
+}

@@ -1,0 +1,103 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 30px;
+
+}
+.leftDiv {
+  width: 20%;
+  float: left;
+  height: 100%;
+}
+.imageList {
+  list-style: none;
+  display: block;
+}
+.imageListItem {
+  width: 130px;
+  height: 100px;
+  margin: 3px 3px 3px 3px;
+  cursor: pointer;
+}
+.imageListItem img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.imageListItem:hover {
+  box-shadow: 0.75rem 0.75rem 1rem 1rem #f5f0f0;
+}
+.centerDiv {
+  width: 40%;
+  float: left;
+  height: 100%;
+}
+.rightDiv {
+  margin-left: 10px;
+  width: 39%;
+  float: right;
+  height: 100%;
+}
+.centeredImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.brand {
+  height: 20%;
+  font-family: Raleway;
+  font-style: normal;
+}
+.brand h2 {
+  font-weight: normal;
+}
+.attributes {
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  color: #1d1f22;
+}
+.attributes ul,
+.attributes li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.price {
+  color: #1d1f22;
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+}
+.addToCart button {
+  width: 292px;
+  height: 60px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  color: #ffffff;
+  background: #5ece7b;
+  border: 0px;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+.addToCart button:active {
+  opacity: 50%;
+}
+.description {
+  width: 50%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 159.96%;
+  color: #1d1f22;
+}
