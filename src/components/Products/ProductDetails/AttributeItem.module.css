@@ -11,6 +11,11 @@
   background-color: transparent;
   cursor: pointer;
   margin-bottom: 5px;
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
 }
 .itemBox:hover {
   background-color: lightgrey;
@@ -19,4 +24,13 @@
 .itemBox.clicked {
   background-color: black;
   color: white;
+  animation: buttonAnimation 0.4s ease forwards;
+}
+@keyframes buttonAnimation {
+  from {
+    transform: scale(1) ;
+  }
+  to {
+    transform: scale(1.1)  ;
+  }
 }

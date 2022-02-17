@@ -2,7 +2,7 @@
   width: 99%;
   display: flex;
   border-top: 1px grey solid;
-  margin-bottom: 10px;
+  padding-bottom: 3%;
   justify-content: space-between;
 }
 .left {
@@ -10,24 +10,38 @@
   height: 100%;
   margin-right: 10%;
 }
-
 .brand {
   font-family: Raleway;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 600;
+  font-size: 30px;
   color: #1d1f22;
 }
 .brand span {
-  font-size: 20px;
   line-height: 160%;
   display: flex;
 }
-.brand h3 {
+.brand :nth-last-of-type(1) {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+}
+.brand.onModal > * {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+}
+.price {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+}
+.price.onModal {
   font-weight: 500;
-  font-size: 20px;
-  line-height: 160%;
-  text-align: right;
-  color: #1d1f22;
+  font-size: 16px;
 }
 
 .attItems {
@@ -62,9 +76,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 160%;
-
   text-align: center;
-
   color: #1d1f22;
 }
 .imageContainer {
@@ -82,41 +94,40 @@
   max-height: 250px;
   object-fit: contain;
 }
-.slide{
+.slide {
   opacity: 0;
-  transition-duration:1s ease-out;
+  transition-duration: 1s ease-out;
 }
-.slide.active{
+.slide.active {
   opacity: 1;
   transition-duration: 1.7s;
   transform: scale(1);
 }
 .leftArrow {
   position: absolute;
-  left:-4%;
+  left: -4%;
   right: 12.5%;
   top: 25%;
   bottom: 25%;
-  background-color:transparent;
+  background-color: transparent;
   border: 0;
-  z-index: 30;
+  z-index: 3;
   cursor: pointer;
 }
-.rightArrow{
+.rightArrow {
   position: absolute;
   left: 79.5%;
   right: 0%;
   top: 25%;
   bottom: 25%;
-  background-color:transparent;
-  z-index: 30;
+  background-color: transparent;
+  z-index: 3;
   border: 0;
   cursor: pointer;
-
 }
-.rightArrow:hover{
+.rightArrow:hover {
   background-color: #5ece7b;
 }
-.leftArrow:hover{
+.leftArrow:hover {
   background-color: #5ece7b;
 }

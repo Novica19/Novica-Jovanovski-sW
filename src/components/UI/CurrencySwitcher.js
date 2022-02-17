@@ -11,7 +11,7 @@ class CurrencySwitcher extends Component {
     };
   }
   selectCurrencyHandler = (e, currency) => {
-    this.context.currencyChange(currency.id);
+    this.context.currencyChange(currency.id, currency.symbol);
     this.setState({
       headerSymbol: currency.symbol,
     });

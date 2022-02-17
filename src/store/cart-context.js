@@ -4,6 +4,7 @@ const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
   currency: "USD",
+  symbol:"$",
   addItemToCart: (item) => {},
   removeItemFromCart: (id) => {},
   persistState:(data) =>{},

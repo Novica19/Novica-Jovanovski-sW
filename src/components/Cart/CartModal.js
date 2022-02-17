@@ -24,6 +24,7 @@ class CartModal extends Component {
       </ul>
     );
     const totalAmount = `${this.context.totalAmount.toFixed(2)}`;
+    const totalSymbol = this.context.symbol;
     const numItems = this.context.items.length;
     return (
       <Modal onHideCart={this.props.onHideCart}>
@@ -39,7 +40,11 @@ class CartModal extends Component {
               <div className={styles.content}>{cartItems}</div>
               <div className={styles.totalAmount}>
                 <div>Total</div>
-                <div> {totalAmount}</div>
+                <div>
+                  {" "}
+                  {totalSymbol}
+                  {totalAmount}
+                </div>
               </div>
               <div className={styles.actions}>
                 <button

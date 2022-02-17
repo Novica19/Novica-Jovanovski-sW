@@ -1,37 +1,9 @@
 import React, { Component } from "react";
 import ProductDetails from "../components/Products/ProductDetails/ProductDetails";
 import { Query } from "react-apollo";
-import { gql } from "@apollo/client";
 import { withRouter } from "react-router";
 import CartContext from "../store/cart-context";
-const GET_PRODUCT_BY_ID = gql`
-  query getProductById($input: String!) {
-    product(id: $input) {
-      id
-      name
-      brand
-      gallery
-      description
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-      attributes {
-        id
-        name
-        type
-        items {
-          displayValue
-          value
-          id
-        }
-      }
-    }
-  }
-`;
+import {GET_PRODUCT_BY_ID} from '../lib/gql'
 
 class ProductDetailPage extends Component {
   static contextType = CartContext;
@@ -39,6 +11,7 @@ class ProductDetailPage extends Component {
     super(props);
     this.state = {
       productId: this.props.match.params.productId,
+      inStock:this.props.location.param1
     };
   }
 
@@ -64,11 +37,12 @@ class ProductDetailPage extends Component {
               description: data.product.description,
               price: data.product.prices[findCurrencyIndex].amount,
               symbol: data.product.prices[findCurrencyIndex].currency.symbol,
-              inStock: data.product.inStock,
+              inStock: this.state.inStock,
               brand: data.product.brand,
               attributes: data.product.attributes,
               prices: data.product.prices,
             };
+           
             return <ProductDetails productData={dataToSend} />;
           }}
         </Query>

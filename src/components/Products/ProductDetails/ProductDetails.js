@@ -59,16 +59,24 @@ class ProductDetails extends Component {
         name: this.props.productData.name,
         brand: this.props.productData.brand,
         image: this.state.selectedImage,
-        gallery:this.props.productData.gallery,
+        gallery: this.props.productData.gallery,
         price: this.props.productData.price,
         attributes: this.state.selectedAttributes,
-        prices:this.props.productData.prices,
+        prices: this.props.productData.prices,
       });
     }
   };
   render() {
-    const { brand, name, price, symbol, description, attributes, gallery } =
-      this.props.productData;
+    const {
+      brand,
+      name,
+      price,
+      symbol,
+      description,
+      attributes,
+      gallery,
+      inStock,
+    } = this.props.productData;
 
     const imageList = gallery.map((image) => {
       return (
@@ -85,6 +93,7 @@ class ProductDetails extends Component {
     const displayDesc = description.replace(/(<([^>]+)>)/gi, "");
 
     const attributesList = attributes.map((att) => {
+     
       return (
         <AttributesList
           key={att.id}
@@ -114,15 +123,22 @@ class ProductDetails extends Component {
             <ul>{attributesList}</ul>
           </div>
           <div className={styles.price}>
-            <h2>Price:</h2>{" "}
+            <h3>Price:</h3>{" "}
             <div>
-              <h3>
-                {symbol} {price}
-              </h3>
+              <h2>
+                {symbol}
+                {price}
+              </h2>
             </div>
           </div>
           <div className={styles.addToCart}>
-            <button onClick={this.addToCartHandler}>ADD TO CART</button>
+            {inStock===true ? (
+              <button onClick={this.addToCartHandler}>ADD TO CART</button>
+            ) : (
+              <h1 className={styles.outOfStock}>
+                We are sorry, product is out of stock
+              </h1>
+            )}
           </div>
           <div className={styles.description}>{displayDesc}</div>
         </div>

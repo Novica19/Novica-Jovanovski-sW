@@ -20,10 +20,10 @@ class DropDownList extends Component {
     const { onSelectedCategory } = this.props;
     this.setState(
       {
-        headerTitle: item.title,
+        headerTitle: item.name.charAt(0).toUpperCase() +item.name.slice(1),
         isListOpen: false,
       },
-      () => onSelectedCategory(item.id)
+      () => onSelectedCategory(item.name)
     );
   };
  
@@ -39,10 +39,10 @@ class DropDownList extends Component {
               <button
                 type="button"
                 className={styles.item}
-                key={item.id}
+                key={item.name}
                 onClick={(e) => this.selectItemHandler(e,item)}
               >
-                {item.title}
+                {item.name}
               </button>
             ))}
           </div>

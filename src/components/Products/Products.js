@@ -17,10 +17,15 @@ class Products extends Component {
             );
 
             const dataToSend = {
+              id:product.id,
               name: product.name,
+              brand:product.brand,
               image: product.gallery[0],
               description: product.description,
+              gallery:product.gallery,
               price: product.prices[findCurrencyIndex].amount,
+              prices:product.prices,
+              attributes: product.attributes,
               symbol: product.prices[findCurrencyIndex].currency.symbol,
               inStock: product.inStock,
             };

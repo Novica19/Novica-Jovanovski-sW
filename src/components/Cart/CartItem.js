@@ -72,11 +72,19 @@ class CartItem extends Component {
     return (
       <li className={styles.container} key={id}>
         <div className={styles.left}>
-          <div className={styles.brand}>
+          <div
+            className={`${styles.brand} ${
+              this.props.onCartModal && styles.onModal
+            }`}
+          >
             <span>{brand}</span>
             <span>{name}</span>
           </div>
-          <div className={styles.price}>
+          <div
+            className={`${styles.price} ${
+              this.props.onCartModal && styles.onModal
+            }`}
+          >
             <div>
               <h3>
                 {symbol}
@@ -99,7 +107,7 @@ class CartItem extends Component {
             </div>
           </div>
           <div>
-            <div className={styles.imageContainer }>
+            <div className={styles.imageContainer}>
               {!this.props.onCartModal && (
                 <>
                   <button
@@ -112,21 +120,23 @@ class CartItem extends Component {
                     onClick={(e) => this.nextImage(galleryLength)}
                     className={styles.rightArrow}
                   >
-                    <img src={rightArrow} alt="rightArrow"   />
+                    <img src={rightArrow} alt="rightArrow" />
                   </button>
                 </>
               )}
               {gallery.map((image, index) => {
                 return (
-                   <div
-                   className={`${styles.slide} ${index === this.state.currentImage && styles.active}`}
-                   key={index}
-                 >
-                   {index === this.state.currentImage && (
-                     <img src={image} alt='' className={styles.image} />
-                   )}
-                 </div>
-                  );
+                  <div
+                    className={`${styles.slide} ${
+                      index === this.state.currentImage && styles.active
+                    }`}
+                    key={index}
+                  >
+                    {index === this.state.currentImage && (
+                      <img src={image} alt="" className={styles.image} />
+                    )}
+                  </div>
+                );
               })}
             </div>
           </div>

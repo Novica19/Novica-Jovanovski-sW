@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import styles from "./ProductItem.module.css";
 import Card from "../UI/Card";
-import CartIcon from "../Cart/CartIcon";
 import { Link } from "react-router-dom";
+import emptyCart from "../../assets/emptyCart.svg";
+import CartContext from "../../store/cart-context";
 class ProductItem extends Component {
+  static contextType = CartContext;
   constructor(props) {
     super(props);
 
     this.state = {
-    isHovering: false,
+      isHovering: false,
     };
   }
   mouseOverHandler = () => {
@@ -22,8 +24,38 @@ class ProductItem extends Component {
       isHovering: false,
     }));
   };
+  addItemToCartHandler = () => {
+    if (this.props.product.inStock) {
+      let preDefAtt = [];
+      this.props.product.attributes.forEach((att) => {
+        preDefAtt.push({
+          id: att.id,
+          selectedItem: att.items[0],
+          attributeItems: att.items,
+          type: att.type,
+        });
+      });
+      const itemToCart = {
+        id: this.props.product.id,
+        name: this.props.product.name,
+        brand: this.props.product.brand,
+        image: this.props.product.image,
+        gallery: this.props.product.gallery,
+        price: this.props.product.price,
+        attributes: preDefAtt,
+        prices: this.props.product.prices,
+      };
+      this.context.addItemToCart(itemToCart);
+    } else {
+      return;
+    }
+  };
 
   render() {
+    const sendTo = {
+      pathname: "/products/" + this.props.id,
+      param1: this.props.product.inStock,
+    };
     return (
       <Card>
         <li
@@ -34,31 +66,33 @@ class ProductItem extends Component {
           }`}
         >
           {" "}
-          <Link
-            to={"/products/" + this.props.id}
-            className={`${styles.link} ${
-              !this.props.product.inStock && styles.disabled
-            }`}
-          >
-            <div className={styles.imageContainer}>
+          <div className={styles.imageContainer}>
+            <Link to={sendTo} className={styles.link}>
               <img
                 className={styles.image}
-                src={ this.props.product.image}
+                src={this.props.product.image}
                 alt={this.props.product.description}
               />
+            </Link>
 
-              {this.state.isHovering && (
-                <button className={styles.cartIcon}>
-                  <CartIcon />
-                </button>
-              )}
-              {!this.props.product.inStock && <h1>OUT OF STOCK</h1>}
-            </div>
-
+            {this.state.isHovering && (
+              <button
+                className={`${styles.cartIcon} ${
+                  !this.props.product.inStock && styles.notInStock
+                }`}
+                onClick={this.addItemToCartHandler}
+              >
+                <img src={emptyCart} alt="emptyCart" />
+              </button>
+            )}
+            {!this.props.product.inStock && <h1>OUT OF STOCK</h1>}
+          </div>
+          <Link to={sendTo} className={styles.link}>
             <div className={styles.description}>
-              <p>{ this.props.product.name}</p>
+              <p>{this.props.product.name}</p>
               <p>
-                {this.props.product.symbol} {this.props.product.price}
+                {this.props.product.symbol}
+                {this.props.product.price}
               </p>
             </div>
           </Link>

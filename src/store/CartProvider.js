@@ -8,6 +8,7 @@ class CartProvider extends Component {
       items: [],
       totalAmount: 0,
       currency: "USD",
+      symbol:"$"
     };
   }
   addItemToCartHandler = (item) => {
@@ -92,7 +93,7 @@ class CartProvider extends Component {
       totalAmount: data.totalAmount,
     });
   };
-  currencyChangeHandler = (id) => {
+  currencyChangeHandler = (id,symbol) => {
     if (this.state.items.length !== 0) {
       let updatedTotalAmount = 0;
       const tempItems = [...this.state.items];
@@ -107,10 +108,12 @@ class CartProvider extends Component {
       this.setState({
         totalAmount: updatedTotalAmount,
         currency: id,
+        symbol: symbol
       });
     } else {
       this.setState({
         currency: id,
+        symbol:symbol
       });
     }
   };
@@ -125,6 +128,7 @@ class CartProvider extends Component {
       items: this.state.items,
       totalAmount: this.state.totalAmount,
       currency: this.state.currency,
+      symbol:this.state.symbol,
       addItemToCart: this.addItemToCartHandler,
       removeItemFromCart: this.removeItemFromCartHandler,
       persistState: this.persistStateHandler,
