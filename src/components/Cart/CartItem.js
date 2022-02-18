@@ -109,20 +109,12 @@ class CartItem extends Component {
           <div>
             <div className={styles.imageContainer}>
               {!this.props.onCartModal && (
-                <>
-                  <button
-                    onClick={(e) => this.prevImage(galleryLength)}
-                    className={styles.leftArrow}
-                  >
-                    <img src={leftArrow} alt="leftArrow" />
-                  </button>
-                  <button
-                    onClick={(e) => this.nextImage(galleryLength)}
-                    className={styles.rightArrow}
-                  >
-                    <img src={rightArrow} alt="rightArrow" />
-                  </button>
-                </>
+                <button
+                  onClick={(e) => this.prevImage(galleryLength)}
+                  className={styles.leftArrow}
+                >
+                  <img src={leftArrow} alt="leftArrow" />
+                </button>
               )}
               {gallery.map((image, index) => {
                 return (
@@ -138,6 +130,14 @@ class CartItem extends Component {
                   </div>
                 );
               })}
+              {!this.props.onCartModal && (
+                <button
+                  onClick={(e) => this.nextImage(galleryLength)}
+                  className={styles.rightArrow}
+                >
+                  <img src={rightArrow} alt="rightArrow" />
+                </button>
+              )}
             </div>
           </div>
         </div>

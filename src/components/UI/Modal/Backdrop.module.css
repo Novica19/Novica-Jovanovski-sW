@@ -7,4 +7,8 @@
     z-index: 20;
     background-color: rgba(57, 55, 72, 0.22);
   }
+  .backdrop.currency{
+
+    background-color: transparent;
+  }
   

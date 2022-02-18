@@ -1,8 +1,11 @@
+.container {
+  padding-right: 30px;
+  position: relative;
+}
 .button {
   background-color: transparent;
   border: 0px;
   cursor: pointer;
-  padding-right: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -32,33 +35,37 @@
   border: none;
   font-size: 16px;
   line-height: 160%;
+  width: 100%;
+  text-align: center;
+}
+.currencyList {
+  list-style: none;
+  background-color: white;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  animation: openList 0.9s;
+  align-content: space-around;
 }
 .currency:hover {
   background-color: black;
   color: white;
 }
-.currencyList {
-  align-items: center;
-  background-color: white;
-  position: absolute;
-  width: 114px;
-  height: 169px;
-  left: 1248px;
-  top: 65px;
-  box-shadow: 0.75rem 0.75rem 1rem 1rem #f5f0f0;
-  display: grid;
-  animation: openList 0.9s;
+
+.modal {
+  position: fixed;
 }
+
 @keyframes openList {
-  0%{
+  0% {
     opacity: 0;
     transform: translateY(-100%);
   }
-  50%{
+  50% {
     opacity: 1;
     transform: translateY(15%);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0%);
   }

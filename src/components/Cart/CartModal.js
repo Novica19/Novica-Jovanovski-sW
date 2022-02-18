@@ -27,8 +27,8 @@ class CartModal extends Component {
     const totalSymbol = this.context.symbol;
     const numItems = this.context.items.length;
     return (
-      <Modal onHideCart={this.props.onHideCart}>
-        <div className={styles.container}>
+      <Modal className={styles.container} onHideCart={this.props.onHideCart}>
+        <div>
           <div className={styles.top}>
             <span>My Bag</span>
             <span>, {numItems} items</span>

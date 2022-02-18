@@ -1,24 +1,32 @@
 .modal {
   position: fixed;
-  width: 325px;
-  left: 70%;
   top: 80px;
+  left: 70%;
   background-color: white;
   padding: 1rem;
-  z-index: 30;
+  z-index: 41;
   animation: openModal 0.9s;
- }
+}
+.modal.currency {
+  position: fixed;
+  left: 83%;
+  right:10%;
+  top: 60px;
+  z-index: 41;
+  box-shadow: 0.75rem 0.75rem 1rem 1rem #f5f0f0;
+  margin: 1px;
+}
 
 @keyframes openModal {
-  0%{
+  0% {
     opacity: 0;
     transform: translateY(-100%);
   }
-  50%{
+  50% {
     opacity: 1;
     transform: translateY(15%);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0%);
   }

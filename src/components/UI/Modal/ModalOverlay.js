@@ -4,7 +4,7 @@ import styles from './ModalOverlay.module.css';
 class ModalOverlay extends Component {
     render() {
         return (
-            <div className={styles.modal}>
+            <div className={`${styles.modal} ${this.props.currency===true ? styles.currency : ''}`}>
               <div>{this.props.children}</div>
             </div>
           );

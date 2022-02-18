@@ -9,11 +9,11 @@ class Modal extends Component {
     return (
       <>
         {ReactDOM.createPortal(
-          <Backdrop onClick={this.props.onHideCart} />,
+          <Backdrop onClick={this.props.onHideCart} currency={this.props.currency}/>,
           portalElement
         )}
         {ReactDOM.createPortal(
-          <ModalOverlay>{this.props.children}</ModalOverlay>,
+          <ModalOverlay currency={this.props.currency}>{this.props.children}</ModalOverlay>,
           portalElement
         )}
       </>

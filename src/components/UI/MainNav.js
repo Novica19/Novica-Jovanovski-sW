@@ -87,7 +87,7 @@ class MainNav extends Component {
             </ul>
           </nav>
         </div>
-        <div>
+        <div >
           <button className={styles.button} onClick={this.onLogoClick}>
             <img src={logo} alt="logo" />
           </button>
@@ -97,6 +97,7 @@ class MainNav extends Component {
             currencyList={this.state.currency}
             onClick={this.props.onShowCurrency}
             currencyIsShown={this.props.currencyIsShown}
+            onHideCart={this.props.onHideCart}
           />
 
           <HeaderCartButton onClick={this.props.onShowCart} />

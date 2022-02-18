@@ -36,9 +36,10 @@ class App extends Component {
   hideCartHandler = () => {
     this.setState({
       cartIsShown: false,
+      currencyIsShown:false,
     });
   };
-  showCurrencyHandler = (curr) => {
+  showCurrencyHandler = () => {
     this.setState((prevState) => {
       const currencyState = {
         cartIsShown: false,
@@ -55,6 +56,7 @@ class App extends Component {
           onShowCart={this.showCartHandler}
           onShowCurrency={this.showCurrencyHandler}
           currencyIsShown={this.state.currencyIsShown}
+          onHideCart={this.hideCartHandler}
         />
         <main>
           {this.state.cartIsShown && (
