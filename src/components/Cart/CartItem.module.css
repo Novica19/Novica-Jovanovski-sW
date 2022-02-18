@@ -1,13 +1,10 @@
 .container {
-  width: 99%;
   display: flex;
   border-top: 1px grey solid;
   padding-bottom: 3%;
   justify-content: space-between;
 }
 .left {
-  width: 70%;
-  height: 100%;
   margin-right: 10%;
 }
 .brand {
@@ -102,6 +99,7 @@
   opacity: 1;
   transition-duration: 1.7s;
   transform: scale(1);
+  margin: 0 10px;
 }
 .leftArrow {
   background-color: hsl(0, 0%, 91%);
