@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  border-top: 1px grey solid;
+  border-top: 1px #E5E5E5 solid;
   padding-bottom: 3%;
   justify-content: space-between;
 }
