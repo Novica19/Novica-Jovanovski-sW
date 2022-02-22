@@ -54,8 +54,12 @@ class ProductDetails extends Component {
       alert("PLEASE SELECT ALL ATTRIBUTES");
       return;
     } else {
+      let attributesID = "";
+      this.state.selectedAttributes.forEach((att) => {
+        attributesID=attributesID+att.selectedItem.id;
+      });
       this.context.addItemToCart({
-        id: this.props.productData.id,
+        id: this.props.productData.id+attributesID,
         name: this.props.productData.name,
         brand: this.props.productData.brand,
         image: this.state.selectedImage,
@@ -93,7 +97,6 @@ class ProductDetails extends Component {
     const displayDesc = description.replace(/(<([^>]+)>)/gi, "");
 
     const attributesList = attributes.map((att) => {
-     
       return (
         <AttributesList
           key={att.id}
@@ -132,7 +135,7 @@ class ProductDetails extends Component {
             </div>
           </div>
           <div className={styles.addToCart}>
-            {inStock===true ? (
+            {inStock === true ? (
               <button onClick={this.addToCartHandler}>ADD TO CART</button>
             ) : (
               <h1 className={styles.outOfStock}>

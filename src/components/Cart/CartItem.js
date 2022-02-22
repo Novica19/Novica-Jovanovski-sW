@@ -64,6 +64,7 @@ class CartItem extends Component {
             att={{ type: att.type, id: att.id }}
             clicked={att.selectedItem.id}
             onCart={true}
+            onCartModal={this.props.onCartModal}
           />
         ))}
       </ul>
@@ -92,7 +93,7 @@ class CartItem extends Component {
               </h3>
             </div>
           </div>
-          {!this.props.onCartModal && <div>{attItems}</div>}
+          <div>{attItems}</div>
         </div>
         <div className={styles.right}>
           <div className={styles.actions}>
@@ -108,14 +109,6 @@ class CartItem extends Component {
           </div>
           <div>
             <div className={styles.imageContainer}>
-              {!this.props.onCartModal && (
-                <button
-                  onClick={(e) => this.prevImage(galleryLength)}
-                  className={styles.leftArrow}
-                >
-                  <img src={leftArrow} alt="leftArrow" />
-                </button>
-              )}
               {gallery.map((image, index) => {
                 return (
                   <div
@@ -124,20 +117,29 @@ class CartItem extends Component {
                     }`}
                     key={index}
                   >
+                    {" "}
+                    {!this.props.onCartModal && (
+                      <button
+                        onClick={(e) => this.prevImage(galleryLength)}
+                        className={styles.leftArrow}
+                      >
+                        <img src={leftArrow} alt="leftArrow" />
+                      </button>
+                    )}
                     {index === this.state.currentImage && (
                       <img src={image} alt="" className={styles.image} />
+                    )}
+                    {!this.props.onCartModal && (
+                      <button
+                        onClick={(e) => this.nextImage(galleryLength)}
+                        className={styles.rightArrow}
+                      >
+                        <img src={rightArrow} alt="rightArrow" />
+                      </button>
                     )}
                   </div>
                 );
               })}
-              {!this.props.onCartModal && (
-                <button
-                  onClick={(e) => this.nextImage(galleryLength)}
-                  className={styles.rightArrow}
-                >
-                  <img src={rightArrow} alt="rightArrow" />
-                </button>
-              )}
             </div>
           </div>
         </div>

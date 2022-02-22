@@ -1,9 +1,8 @@
-
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import DropDownList from "../components/UI/DropDownList";
 import Products from "../components/Products/Products";
-import { GET_CATEGORY ,GET_BY_CATEGORY} from "../lib/gql";
+import { GET_CATEGORY, GET_BY_CATEGORY } from "../lib/gql";
 
 class ProductsPage extends Component {
   constructor(props) {

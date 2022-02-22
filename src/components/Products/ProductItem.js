@@ -35,8 +35,12 @@ class ProductItem extends Component {
           type: att.type,
         });
       });
+      let attributesID = "";
+      preDefAtt.forEach((att) => {
+        attributesID = attributesID + att.selectedItem.id;
+      });
       const itemToCart = {
-        id: this.props.product.id,
+        id: this.props.product.id + attributesID,
         name: this.props.product.name,
         brand: this.props.product.brand,
         image: this.props.product.image,
@@ -50,11 +54,12 @@ class ProductItem extends Component {
       return;
     }
   };
-
   render() {
+    const { inStock, image, description, name, symbol, price,id } =
+      this.props.product;
     const sendTo = {
-      pathname: "/products/" + this.props.id,
-      param1: this.props.product.inStock,
+      pathname: "/products/" + id,
+      param1: inStock,
     };
     return (
       <Card>
@@ -62,7 +67,7 @@ class ProductItem extends Component {
           onMouseEnter={this.mouseOverHandler}
           onMouseLeave={this.mouseOutHandler}
           className={`${styles.card} ${
-            !this.props.product.inStock && styles.notInStock
+            !inStock && styles.notInStock
           }`}
         >
           {" "}
@@ -70,29 +75,29 @@ class ProductItem extends Component {
             <Link to={sendTo} className={styles.link}>
               <img
                 className={styles.image}
-                src={this.props.product.image}
-                alt={this.props.product.description}
+                src={image}
+                alt={description}
               />
             </Link>
 
             {this.state.isHovering && (
               <button
                 className={`${styles.cartIcon} ${
-                  !this.props.product.inStock && styles.notInStock
+                  !inStock && styles.notInStock
                 }`}
                 onClick={this.addItemToCartHandler}
               >
                 <img src={emptyCart} alt="emptyCart" />
               </button>
             )}
-            {!this.props.product.inStock && <h1>OUT OF STOCK</h1>}
+            {!inStock && <h1>OUT OF STOCK</h1>}
           </div>
           <Link to={sendTo} className={styles.link}>
             <div className={styles.description}>
-              <p>{this.props.product.name}</p>
+              <p>{name}</p>
               <p>
-                {this.props.product.symbol}
-                {this.props.product.price}
+                {symbol}
+                {price}
               </p>
             </div>
           </Link>

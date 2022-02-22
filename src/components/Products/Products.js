@@ -15,7 +15,6 @@ class Products extends Component {
             const findCurrencyIndex = product.prices.findIndex(
               (price) => price.currency.label ===  currencyContext
             );
-
             const dataToSend = {
               id:product.id,
               name: product.name,

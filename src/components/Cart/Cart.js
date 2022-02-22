@@ -5,14 +5,20 @@ import CartItem from "./CartItem";
 class Cart extends Component {
   static contextType = CartContext;
   render() {
+    const items = this.context.items;
     const cartItems = (
       <ul className={styles.cartItems}>
-        {this.context.items.map((item) => (
-          <CartItem key={item.id} item={item} onCart={true} onCartModal={false} />
+        {items.map((item) => (
+          <CartItem
+            key={item.id}
+            item={item}
+            onCart={true}
+            onCartModal={false}
+          />
         ))}
       </ul>
     );
-    const numItems = this.context.items.length;
+    const numItems = items.length;
     return (
       <div className={styles.container}>
         <h1>CART</h1>

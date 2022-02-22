@@ -15,20 +15,21 @@ class AttributesList extends Component {
       {
         isClicked: item.id,
       },
-      () => onAttributeChange(this.props.att,item)
+      () => onAttributeChange(this.props.att, item)
     );
   };
   render() {
+    const { id, name, type } = this.props.att;
     return (
-      <li key={this.props.att.id}>
-        <label>{this.props.att.name}:</label>
+      <li key={id}>
+        <label>{name}:</label>
         <div className={styles.itemContainer}>
           {this.props.att.items.map((item) => {
             return (
               <AttributeItem
                 key={item.id}
                 item={item}
-                att={{ type: this.props.att.type, id: this.props.att.id }}
+                att={{ type: type, id: id }}
                 clicked={this.state.isClicked}
                 onAttributeSelect={this.attributeSelectHandler}
               />

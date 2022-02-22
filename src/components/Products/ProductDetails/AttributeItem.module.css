@@ -26,6 +26,21 @@
   color: white;
   animation: buttonAnimation 0.4s ease forwards;
 }
+.itemBox__OnCartModal{
+  width: 30px;
+  min-width: fit-content;
+  height: 30px;
+  border: 1px solid #1d1f22;
+  text-align: center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: black;
+  color: white;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
 @keyframes buttonAnimation {
   from {
     transform: scale(1) ;
