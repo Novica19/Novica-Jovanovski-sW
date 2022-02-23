@@ -47,6 +47,7 @@ class CartProvider extends Component {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
       currency: this.state.currency,
+      symbol:this.state.symbol
     };
     localStorage.setItem("LocalContext", JSON.stringify(data));
   };
@@ -84,6 +85,7 @@ class CartProvider extends Component {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
       currency: this.state.currency,
+      symbol:this.state.symbol
     };
     localStorage.setItem("LocalContext", JSON.stringify(data));
   };
@@ -91,6 +93,8 @@ class CartProvider extends Component {
     this.setState({
       items: data.items,
       totalAmount: data.totalAmount,
+      currency: this.state.currency,
+      symbol:this.state.symbol,
     });
   };
   currencyChangeHandler = (id,symbol) => {
@@ -122,6 +126,13 @@ class CartProvider extends Component {
       items: [],
       totalAmount: 0,
     })
+    const data = {
+      items: [],
+      totalAmount: 0,
+      currency: this.state.currency,
+      symbol:this.state.symbol
+    };
+    localStorage.setItem("LocalContext", JSON.stringify(data));
   }
   render() {
     const cartContext = {
