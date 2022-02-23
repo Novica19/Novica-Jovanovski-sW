@@ -11,7 +11,6 @@ class ProductDetailPage extends Component {
     super(props);
     this.state = {
       productId: this.props.match.params.productId,
-      inStock:this.props.location.inStock
     };
   }
   render() {
@@ -36,7 +35,7 @@ class ProductDetailPage extends Component {
               description: data.product.description,
               price: data.product.prices[findCurrencyIndex].amount,
               symbol: data.product.prices[findCurrencyIndex].currency.symbol,
-              inStock:this.state.inStock,
+              inStock:data.product.inStock,
               brand: data.product.brand,
               attributes: data.product.attributes,
               prices: data.product.prices,
