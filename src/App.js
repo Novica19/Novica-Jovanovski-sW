@@ -4,6 +4,8 @@ import MainNav from "./components/UI/MainNav";
 import ProductsPage from "./pages/ProductsPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import { Query } from "react-apollo";
+import { GET_CATEGORY } from "./lib/gql";
 
 import CartModal from "./components/Cart/CartModal";
 import CartPage from "./pages/CartPage";
@@ -16,6 +18,7 @@ class App extends Component {
     this.state = {
       cartIsShown: false,
       currencyIsShown: false,
+      selectedCategory:'all'
     };
   }
   componentDidMount() {
@@ -36,7 +39,7 @@ class App extends Component {
   hideCartHandler = () => {
     this.setState({
       cartIsShown: false,
-      currencyIsShown:false,
+      currencyIsShown: false,
     });
   };
   showCurrencyHandler = () => {
@@ -48,16 +51,36 @@ class App extends Component {
       return currencyState;
     });
   };
+  selectedCategoryHandler = (id) => {
+    this.setState({
+      selectedCategory: id,
+    });
+  };
 
   render() {
     return (
       <>
-        <MainNav
-          onShowCart={this.showCartHandler}
-          onShowCurrency={this.showCurrencyHandler}
-          currencyIsShown={this.state.currencyIsShown}
-          onHideCart={this.hideCartHandler}
-        />
+        <Query query={GET_CATEGORY}>
+          {({ loading, error, data }) => {
+            if (error) return <h1>Error...</h1>;
+            if (loading || !data) return <h1>Loading...</h1>;
+            let dataToSend = [];
+            data.categories.forEach((element) => {
+              dataToSend.push({ name: element.name, clicked: false });
+            });
+            return (
+              <MainNav
+                onSelectedCategory={this.selectedCategoryHandler}
+                categoryList={dataToSend}
+                onShowCart={this.showCartHandler}
+                onShowCurrency={this.showCurrencyHandler}
+                currencyIsShown={this.state.currencyIsShown}
+                onHideCart={this.hideCartHandler}
+              />
+            );
+          }}
+        </Query>
+
         <main>
           {this.state.cartIsShown && (
             <CartModal onHideCart={this.hideCartHandler} />
@@ -67,11 +90,11 @@ class App extends Component {
               <Redirect to="/products" />
             </Route>
             <Route path="/products" exact>
-              <ProductsPage />
+              <ProductsPage selectedCategory={this.state.selectedCategory} />
             </Route>
 
             <Route path="/products/:productId">
-              <ProductDetailPage />
+              <ProductDetailPage  />
             </Route>
             <Route path={"/cart"}>
               <CartPage />

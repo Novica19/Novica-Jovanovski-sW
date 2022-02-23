@@ -1,43 +1,19 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import DropDownList from "../components/UI/DropDownList";
+import styles from './ProductsPage.module.css'
+
 import Products from "../components/Products/Products";
-import { GET_CATEGORY, GET_BY_CATEGORY } from "../lib/gql";
+import { GET_BY_CATEGORY } from "../lib/gql";
 
 class ProductsPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCategory: "",
-    };
-  }
-
-  selectedCategoryHandler = (id) => {
-    this.setState({
-      selectedCategory: id,
-    });
-  };
-
   render() {
+    const {selectedCategory}=this.props;
     return (
       <>
-        <Query query={GET_CATEGORY}>
-          {({ loading, error, data }) => {
-            if (error) return <h1>Error...</h1>;
-            if (loading || !data) return <h1>Loading...</h1>;
-            return (
-              <DropDownList
-                title="All"
-                list={data.categories}
-                onSelectedCategory={this.selectedCategoryHandler}
-              />
-            );
-          }}
-        </Query>
-
+        <h1 className={styles.heading}>{selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}</h1>
         <Query
           query={GET_BY_CATEGORY}
-          variables={{ input: this.state.selectedCategory }}
+          variables={{ input: this.props.selectedCategory }}
         >
           {({ loading, error, data }) => {
             if (error) return <h1>Error...</h1>;

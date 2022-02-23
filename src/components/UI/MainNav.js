@@ -3,35 +3,33 @@ import HeaderCartButton from "../Cart/HeaderCartButton";
 import styles from "./MainNav.module.css";
 import logo from "../../assets/a-logo.svg";
 import { withRouter } from "react-router-dom";
-import { GET_CURRENCIES } from "../../lib/gql";
+import { GET_CURRENCIES, } from "../../lib/gql";
 import { Query } from "react-apollo";
 
 import CurrencySwitcher from "./CurrencySwitcher";
 
 class MainNav extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      population: [
-        { id: "WOMEN", clicked: false },
-        { id: "MEN", clicked: false },
-        { id: "KIDS", clicked: false },
-      ],
+      category:this.props.categoryList,
     };
   }
-  popClickedHandler = (e, pop) => {
+  popClickedHandler = (e, categorySent) => {
     this.setState((prevState) => {
-      const population = [...prevState.population];
-      const index = population.findIndex((p) => p.id === pop.id);
-      population[index].clicked = !population[index].clicked;
-      const tempId = population[index].id;
-      population.forEach((pop) => {
-        if (pop.id !== tempId) {
-          pop.clicked = false;
+      const category = [...prevState.category];
+      const index = category.findIndex((p) => p.name === categorySent.name);
+      category[index].clicked = !category[index].clicked;
+      const tempId = category[index].name;
+      category.forEach((c) => {
+        if (c.name !== tempId) {
+          c.clicked = false;
         }
       });
-      return { population };
-    });
+      console.log(category)
+      return { category };
+    },
+    () => this.props.onSelectedCategory(categorySent.name));
   };
   onLogoClick = () => {
     this.props.history.push("/products");
@@ -42,15 +40,15 @@ class MainNav extends Component {
         <div>
           <nav className={styles.nav}>
             <ul>
-              {this.state.population.map((pop) => (
-                <li key={pop.id}>
+              {this.state.category.map((category) => (
+                <li key={category.name}>
                   <button
                     className={`${styles.button} ${
-                      pop.clicked && styles.clicked
+                      category.clicked && styles.clicked
                     }`}
-                    onClick={(e) => this.popClickedHandler(e, pop)}
+                    onClick={(e) => this.popClickedHandler(e, category)}
                   >
-                    {pop.id}
+                    {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
                   </button>
                 </li>
               ))}

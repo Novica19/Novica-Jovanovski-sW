@@ -1,0 +1,9 @@
+.heading {
+  padding-left: 101px;
+  color: #1d1f22;
+  font-family: Raleway;
+  font-size: 42px;
+  line-height: 160%;
+  display: flex;
+  align-items: center;
+}
