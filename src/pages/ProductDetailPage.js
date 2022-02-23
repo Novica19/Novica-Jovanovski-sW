@@ -23,6 +23,8 @@ class ProductDetailPage extends Component {
           query={GET_PRODUCT_BY_ID}
           variables={{ input: this.state.productId }}
         >
+          
+          
           {({ loading, error, data }) => {
             if (error) return <h1>Error...</h1>;
             if (loading || !data) return <h1>Loading...</h1>;
@@ -42,7 +44,6 @@ class ProductDetailPage extends Component {
               attributes: data.product.attributes,
               prices: data.product.prices,
             };
-           
             return <ProductDetails productData={dataToSend} />;
           }}
         </Query>

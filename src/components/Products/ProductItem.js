@@ -39,8 +39,16 @@ class ProductItem extends Component {
       preDefAtt.forEach((att) => {
         attributesID = attributesID + att.selectedItem.id;
       });
+
+      let numID = 0;
+      let array = Array.from(attributesID);
+
+      array.forEach((c) => {
+        numID = numID + c.charCodeAt(0);
+      });
+
       const itemToCart = {
-        id: this.props.product.id + attributesID,
+        id: this.props.product.id + numID,
         name: this.props.product.name,
         brand: this.props.product.brand,
         image: this.props.product.image,
@@ -55,7 +63,7 @@ class ProductItem extends Component {
     }
   };
   render() {
-    const { inStock, image, description, name, symbol, price,id } =
+    const { inStock, image, description, name, symbol, price, id } =
       this.props.product;
     const sendTo = {
       pathname: "/products/" + id,
@@ -66,18 +74,12 @@ class ProductItem extends Component {
         <li
           onMouseEnter={this.mouseOverHandler}
           onMouseLeave={this.mouseOutHandler}
-          className={`${styles.card} ${
-            !inStock && styles.notInStock
-          }`}
+          className={`${styles.card} ${!inStock && styles.notInStock}`}
         >
           {" "}
           <div className={styles.imageContainer}>
             <Link to={sendTo} className={styles.link}>
-              <img
-                className={styles.image}
-                src={image}
-                alt={description}
-              />
+              <img className={styles.image} src={image} alt={description} />
             </Link>
 
             {this.state.isHovering && (

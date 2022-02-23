@@ -55,11 +55,21 @@ class ProductDetails extends Component {
       return;
     } else {
       let attributesID = "";
+
       this.state.selectedAttributes.forEach((att) => {
-        attributesID=attributesID+att.selectedItem.id;
+        attributesID = attributesID + att.selectedItem.id;
       });
+
+      let numID = 0;
+      let array = Array.from(attributesID);
+      array.forEach((c) => {
+        numID = numID + c.charCodeAt(0);
+
+      });
+
+
       this.context.addItemToCart({
-        id: this.props.productData.id+attributesID,
+        id: this.props.productData.id + numID,
         name: this.props.productData.name,
         brand: this.props.productData.brand,
         image: this.state.selectedImage,

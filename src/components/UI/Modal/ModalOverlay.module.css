@@ -9,6 +9,7 @@
 }
 
 .modal__currency {
+  background-color: white;
   position: fixed;
   right: 130px;
   top: 60px;

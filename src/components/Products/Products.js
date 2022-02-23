@@ -28,6 +28,7 @@ class Products extends Component {
               symbol: product.prices[findCurrencyIndex].currency.symbol,
               inStock: product.inStock,
             };
+
             return (
               <ProductItem
                 key={product.id}

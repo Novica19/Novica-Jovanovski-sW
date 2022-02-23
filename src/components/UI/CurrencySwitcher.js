@@ -12,7 +12,7 @@ class CurrencySwitcher extends Component {
     };
   }
   selectCurrencyHandler = (e, currency) => {
-    this.context.currencyChange(currency.id, currency.symbol);
+    this.context.currencyChange(currency.label, currency.symbol);
     this.setState({
       headerSymbol: currency.symbol,
     });
@@ -37,11 +37,11 @@ class CurrencySwitcher extends Component {
           <ul className={styles.currencyList}>
             {this.props.currencyList.map((currency) => (
               <li
-                key={currency.id}
+                key={currency.label}
                 className={styles.currency}
                 onClick={(e) => this.selectCurrencyHandler(e, currency)}
               >
-                {currency.symbol} {currency.title}
+                {currency.symbol} {currency.label}
               </li>
             ))}
           </ul>

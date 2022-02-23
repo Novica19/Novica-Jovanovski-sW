@@ -3,6 +3,8 @@ import HeaderCartButton from "../Cart/HeaderCartButton";
 import styles from "./MainNav.module.css";
 import logo from "../../assets/a-logo.svg";
 import { withRouter } from "react-router-dom";
+import { GET_CURRENCIES } from "../../lib/gql";
+import { Query } from "react-apollo";
 
 import CurrencySwitcher from "./CurrencySwitcher";
 
@@ -14,38 +16,6 @@ class MainNav extends Component {
         { id: "WOMEN", clicked: false },
         { id: "MEN", clicked: false },
         { id: "KIDS", clicked: false },
-      ],
-      currency: [
-        {
-          id: "USD",
-          title: "USD",
-          symbol: "$",
-          key: "currency",
-        },
-        {
-          id: "GBP",
-          title: "GBP",
-          symbol: "£",
-          key: "currency",
-        },
-        {
-          id: "AUD",
-          title: "AUD",
-          symbol: "A$",
-          key: "currency",
-        },
-        {
-          id: "JPY",
-          title: "JPY",
-          symbol: "¥",
-          key: "currency",
-        },
-        {
-          id: "RUB",
-          title: "RUB",
-          symbol: "₽",
-          key: "currency",
-        },
       ],
     };
   }
@@ -87,18 +57,26 @@ class MainNav extends Component {
             </ul>
           </nav>
         </div>
-        <div >
+        <div>
           <button className={styles.button} onClick={this.onLogoClick}>
             <img src={logo} alt="logo" />
           </button>
         </div>
         <div className={styles.navRight}>
-          <CurrencySwitcher
-            currencyList={this.state.currency}
-            onClick={this.props.onShowCurrency}
-            currencyIsShown={this.props.currencyIsShown}
-            onHideCart={this.props.onHideCart}
-          />
+          <Query query={GET_CURRENCIES}>
+            {({ loading, error, data }) => {
+              if (error) return <h1>Error...</h1>;
+              if (loading || !data) return <h1>Loading...</h1>;
+              return (
+                <CurrencySwitcher
+                  currencyList={data.currencies}
+                  onClick={this.props.onShowCurrency}
+                  currencyIsShown={this.props.currencyIsShown}
+                  onHideCart={this.props.onHideCart}
+                />
+              );
+            }}
+          </Query>
 
           <HeaderCartButton onClick={this.props.onShowCart} />
         </div>
