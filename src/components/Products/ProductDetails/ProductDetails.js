@@ -80,6 +80,8 @@ class ProductDetails extends Component {
       });
     }
   };
+
+  
   render() {
     const {
       brand,

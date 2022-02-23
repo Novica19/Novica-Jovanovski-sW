@@ -6,7 +6,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { Query } from "react-apollo";
 import { GET_CATEGORY } from "./lib/gql";
-
 import CartModal from "./components/Cart/CartModal";
 import CartPage from "./pages/CartPage";
 import CartContext from "./store/cart-context";

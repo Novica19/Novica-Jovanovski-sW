@@ -3,7 +3,7 @@ import ProductDetails from "../components/Products/ProductDetails/ProductDetails
 import { Query } from "react-apollo";
 import { withRouter } from "react-router";
 import CartContext from "../store/cart-context";
-import {GET_PRODUCT_BY_ID} from '../lib/gql'
+import { GET_PRODUCT_BY_ID } from "../lib/gql";
 
 class ProductDetailPage extends Component {
   static contextType = CartContext;
@@ -11,10 +11,9 @@ class ProductDetailPage extends Component {
     super(props);
     this.state = {
       productId: this.props.match.params.productId,
-      inStock:this.props.location.param1
+      inStock:this.props.location.inStock
     };
   }
-
   render() {
     const currencyContext = this.context.currency;
     return (
@@ -23,8 +22,6 @@ class ProductDetailPage extends Component {
           query={GET_PRODUCT_BY_ID}
           variables={{ input: this.state.productId }}
         >
-          
-          
           {({ loading, error, data }) => {
             if (error) return <h1>Error...</h1>;
             if (loading || !data) return <h1>Loading...</h1>;
@@ -39,7 +36,7 @@ class ProductDetailPage extends Component {
               description: data.product.description,
               price: data.product.prices[findCurrencyIndex].amount,
               symbol: data.product.prices[findCurrencyIndex].currency.symbol,
-              inStock: this.state.inStock,
+              inStock:this.state.inStock,
               brand: data.product.brand,
               attributes: data.product.attributes,
               prices: data.product.prices,

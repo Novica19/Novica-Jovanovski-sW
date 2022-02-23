@@ -26,7 +26,6 @@ class MainNav extends Component {
           c.clicked = false;
         }
       });
-      console.log(category)
       return { category };
     },
     () => this.props.onSelectedCategory(categorySent.name));

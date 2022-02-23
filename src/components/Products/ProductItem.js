@@ -67,7 +67,7 @@ class ProductItem extends Component {
       this.props.product;
     const sendTo = {
       pathname: "/products/" + id,
-      param1: inStock,
+      inStock: inStock,
     };
     return (
       <Card>
